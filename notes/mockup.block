@@ -1,0 +1,17 @@
+//mockup of block-structure for a citizen
+
+block_n{
+	//signing authority
+	author="",
+    //timestamp for hardening purposes
+	timestamp="",
+	//previous SHA2-hash
+	prev_hash="",
+	//public key component of RSA-4096
+	pubkey="",
+	//CPR registered name
+	identity="",
+	//dob in ddmmyyyy-format
+	dob="",
+}    
+    
