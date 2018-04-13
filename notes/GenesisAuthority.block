@@ -1,0 +1,15 @@
+//mockup of block datatype for a genesis authority
+
+block_n{
+	//timestamp for hardening purposes
+	timestamp="unixepoch",
+	//previous SHA2-hash, would be zeroed if genesis
+	prev_hash="",
+	//public key component of RSA-4096
+	pubkey="",
+	//identifier for genesis authority, would be CPR-administrator in Denmark 
+	identity="John Marvin Doe",
+	//dob in ddmmyyyy-format
+	dob="30121900",
+}    
+    
