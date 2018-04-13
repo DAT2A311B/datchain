@@ -1,10 +1,10 @@
-//mockup of block datatype for a citizen
+//mockup of block datatype for a validator
 
 block_n{
 	//signing authority
-	author="validator",
+	author="genesis-authority",
 	//timestamp for hardening purposes
-	timestamp="unitepoch",
+	timestamp="unixepoch",
 	//previous SHA2-hash
 	prev_hash="",
 	//public key component of RSA-4096
