@@ -1,5 +1,7 @@
 package main;
 
+import java.util.Date;
+
 public class CitizenBlock implements Block {
 
     private String validatorIdent;
@@ -8,14 +10,18 @@ public class CitizenBlock implements Block {
     private String citizenPubKey;
     private String hash;
     private String prevHash;
-    private int timestamp;
+    private long timestamp;
 
-    public CitizenBlock(String validatorIdent, String validatorPubKey) {
+    public CitizenBlock(String validatorIdent, String validatorPubKey, String citizenIdent, String citizenPubKey, String prevHash) {
         this.validatorIdent = validatorIdent;
         this.validatorPubKey = validatorPubKey;
+        this.citizenIdent = citizenIdent;
+        this.citizenPubKey = citizenPubKey;
+        this.prevHash = prevHash;
+        this.timestamp = new Date().getTime();
     }
 
-    @Override
+
     public String getHash() {
         return this.hash;
     }
@@ -26,7 +32,7 @@ public class CitizenBlock implements Block {
     }
 
     @Override
-    public int getTimestamp() {
+    public long getTimestamp() {
         return this.timestamp;
     }
 
