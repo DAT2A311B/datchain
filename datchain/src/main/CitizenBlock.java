@@ -1,6 +1,8 @@
 package main;
 
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import static java.time.Instant.now;
 
 public class CitizenBlock implements Block {
@@ -20,18 +22,29 @@ public class CitizenBlock implements Block {
         this.citizenIdent = citizenIdent;
         this.citizenPubKey = citizenPubKey;
         this.prevHash = prevHash;
+        this.index = calcIndex();
         //Unix Epoch
         this.timestamp = now().getEpochSecond();
+        this.hash = computeHash();
     }
 
     public String computeHash() {
         String hashInput = validatorIdent + validatorPubKey + citizenIdent + citizenPubKey + prevHash + timestamp + index;
 
-        //TODO implement SHA256-hash function with proper java.security exceptions
+        MessageDigest messageDigest = null;
 
-        return hashInput;
+        try {
+            messageDigest = MessageDigest.getInstance("SHA-256");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        //TODO might be redundant or not proper error-handling
+        assert messageDigest != null;
+
+        //hash input bytewise and return hashed bytes as string
+        messageDigest.update(hashInput.getBytes());
+        return new String(messageDigest.digest());
     }
-
     public String getHash() {
         return this.hash;
     }
@@ -42,6 +55,11 @@ public class CitizenBlock implements Block {
 
     public long getTimestamp() {
         return this.timestamp;
+    }
+
+    public int calcIndex() {
+        //TODO implement getter method for finding number of current, total blocks in chain
+        return 0;
     }
 
     public int getIndex() {
