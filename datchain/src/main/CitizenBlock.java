@@ -1,6 +1,7 @@
 package main;
 
-import java.util.Date;
+
+import static java.time.Instant.now;
 
 public class CitizenBlock implements Block {
 
@@ -10,6 +11,7 @@ public class CitizenBlock implements Block {
     private String citizenPubKey;
     private String hash;
     private String prevHash;
+    private int index;
     private long timestamp;
 
     public CitizenBlock(String validatorIdent, String validatorPubKey, String citizenIdent, String citizenPubKey, String prevHash) {
@@ -18,30 +20,38 @@ public class CitizenBlock implements Block {
         this.citizenIdent = citizenIdent;
         this.citizenPubKey = citizenPubKey;
         this.prevHash = prevHash;
-        this.timestamp = new Date().getTime();
+        //Unix Epoch
+        this.timestamp = now().getEpochSecond();
     }
 
+    public String computeHash() {
+        String hashInput = validatorIdent + validatorPubKey + citizenIdent + citizenPubKey + prevHash + timestamp + index;
+
+        //TODO implement SHA256-hash function with proper java.security exceptions
+
+        return hashInput;
+    }
 
     public String getHash() {
         return this.hash;
     }
 
-    @Override
     public String getPrevHash() {
         return this.prevHash;
     }
 
-    @Override
     public long getTimestamp() {
         return this.timestamp;
     }
 
-    @Override
+    public int getIndex() {
+        return this.index;
+    }
+
     public String getPubKey() {
         return this.citizenPubKey;
     }
 
-    @Override
     public String getIdentity() {
         return this.citizenIdent;
     }
