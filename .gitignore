@@ -8,6 +8,7 @@
 /datchain/.idea/**/workspace.xml
 /datchain/.idea/**/tasks.xml
 /datchain/.idea/dictionaries
+/datchain/.idea/vcs.xml
 
 # Sensitive or high-churn files:
 /datchain/.idea/**/dataSources/
