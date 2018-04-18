@@ -15,4 +15,13 @@ public class DatchainTest {
         CitizenBlock block01 = new CitizenBlock("Validator","ValidatorPubkey", "Citizen Name", "CitizenPubKey", "0000");
         assertEquals(new Date().getTime(),block01.getTimestamp());
     }
+
+    @Test
+    public void testNameCongruency() {
+        CitizenBlock block01 = new CitizenBlock("Validator","ValidatorPubkey", "Citizen Name", "CitizenPubKey", "9817324939382");
+        assertEquals(block01.getIdentity(), "Citizen Name");
+        //TODO Must also test validator info
+    }
+
+    //TODO test validator and citizen RSA-congruency
 }
