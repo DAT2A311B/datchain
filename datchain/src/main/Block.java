@@ -1,6 +1,11 @@
 package main;
 
-//should be interface to describe shared functionality by genesis/validator/citizen-blocks
+public interface Block {
 
-public class Block {
+    //shared functionality of all blocks
+    public getHash();
+    public getPrevHash();
+    public getTimestamp();
+    public getPubKey();
+    public getIdent();
 }
