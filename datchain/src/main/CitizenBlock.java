@@ -1,6 +1,8 @@
 package main;
 
 
+import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import static java.time.Instant.now;
@@ -13,7 +15,6 @@ public class CitizenBlock implements Block {
     private String citizenPubKey;
     private String hash;
     private String prevHash;
-    private int index;
     private long timestamp;
 
     public CitizenBlock(String validatorIdent, String validatorPubKey, String citizenIdent, String citizenPubKey, String prevHash) {
@@ -22,14 +23,14 @@ public class CitizenBlock implements Block {
         this.citizenIdent = citizenIdent;
         this.citizenPubKey = citizenPubKey;
         this.prevHash = prevHash;
-        this.index = calcIndex();
         //Unix Epoch
         this.timestamp = now().getEpochSecond();
         this.hash = computeHash();
     }
 
     public String computeHash() {
-        String hashInput = validatorIdent + validatorPubKey + citizenIdent + citizenPubKey + prevHash + timestamp + index;
+        //should grab and implement chain-index
+        String hashInput = validatorIdent + validatorPubKey + citizenIdent + citizenPubKey + prevHash + timestamp;
 
         MessageDigest messageDigest = null;
 
@@ -41,10 +42,12 @@ public class CitizenBlock implements Block {
         //TODO might be redundant or not proper error-handling
         assert messageDigest != null;
 
-        //hash input bytewise and return hashed bytes as string
-        messageDigest.update(hashInput.getBytes());
-        return new String(messageDigest.digest());
+        //get hashInput as bytes in UTF-8 and update messageDigest
+        messageDigest.update(hashInput.getBytes(StandardCharsets.UTF_8));
+        //create digest byte-array with resulting hash and encode digest as hex-string
+        return String.format("%064x", new BigInteger(1, messageDigest.digest()));
     }
+
     public String getHash() {
         return this.hash;
     }
@@ -55,15 +58,6 @@ public class CitizenBlock implements Block {
 
     public long getTimestamp() {
         return this.timestamp;
-    }
-
-    public int calcIndex() {
-        //TODO implement getter method for finding number of current, total blocks in chain
-        return 0;
-    }
-
-    public int getIndex() {
-        return this.index;
     }
 
     public String getPubKey() {
