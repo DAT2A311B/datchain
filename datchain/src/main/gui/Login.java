@@ -27,6 +27,7 @@ public class Login {
         Login_button.setMinWidth(80);
         Login_button.setMinHeight(30);
         root.getChildren().add(Login_button);
+        Login_button.setOnMouseClicked(event -> MainScreen.screen(primaryStage));
 
         primaryStage.setScene(scene);
         primaryStage.show();
