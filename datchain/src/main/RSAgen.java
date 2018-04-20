@@ -1,4 +1,4 @@
-package RSA;
+package main;
 
 import java.io.*;
 import java.security.KeyPair;
@@ -7,13 +7,13 @@ import java.security.PrivateKey;
 import java.security.PublicKey;
 import javax.crypto.Cipher;
 
-import static RSA.RSAgen.Constants.ALGORITHM;
-import static RSA.RSAgen.Constants.PRIVATE_KEY_FILE;
-import static RSA.RSAgen.Constants.PUBLIC_KEY_FILE;
+import static main.RSAgen.Constants.ALGORITHM;
+import static main.RSAgen.Constants.PRIVATE_KEY_FILE;
+import static main.RSAgen.Constants.PUBLIC_KEY_FILE;
 
 public class RSAgen {
     public class Constants {
-        public static final String ALGORITHM = "RSA";
+        public static final String ALGORITHM = "main";
         public static final String PRIVATE_KEY_FILE = "C:/datchain/keys/private.key";
         public static final String PUBLIC_KEY_FILE = "C:/datchain/keys/public.key";
 
@@ -90,6 +90,7 @@ public class RSAgen {
             if(!keysPresent()) {
                 Keygen();
             }
+
             String text = "Text to be encrypted";
             ObjectInputStream inputStream;
 
