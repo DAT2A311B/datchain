@@ -22,9 +22,9 @@ public class Datchain {
         System.out.println("n blocks in chain01: " + chain01.size());
 
         Chain<Block> chain02 = new Chain<>();
-        chain02.add(block01);
-        chain02.add(block02);
-        chain02.add(block03);
+        chain02.addBlock(block01);
+        chain02.addBlock(block02);
+        chain02.addBlock(block03);
 
         System.out.println("n blocks in chain02: " + chain02.size());
 

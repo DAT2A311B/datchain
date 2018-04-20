@@ -29,7 +29,7 @@ public class CitizenBlock implements Block {
     }
 
     public String computeHash() {
-        //should grab and implement chain-index
+        //TODO should grab and implement chain-index
         String hashInput = validatorIdent + validatorPubKey + citizenIdent + citizenPubKey + prevHash + timestamp;
 
         MessageDigest messageDigest = null;
