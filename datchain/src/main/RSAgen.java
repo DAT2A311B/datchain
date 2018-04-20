@@ -13,7 +13,7 @@ import static main.RSAgen.Constants.PUBLIC_KEY_FILE;
 
 public class RSAgen {
     public class Constants {
-        public static final String ALGORITHM = "main";
+        public static final String ALGORITHM = "RSA";
         public static final String PRIVATE_KEY_FILE = "C:/datchain/keys/private.key";
         public static final String PUBLIC_KEY_FILE = "C:/datchain/keys/public.key";
 
