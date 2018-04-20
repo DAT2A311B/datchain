@@ -83,36 +83,4 @@ public class RSAgen {
         }
         return new String(decryptedtext);
     }
-
-    public static void main(String[] args) {
-        //TODO Implement grabbing user data
-        try {
-            if(!keysPresent()) {
-                Keygen();
-            }
-
-            String text = "Text to be encrypted";
-            ObjectInputStream inputStream;
-
-            //Encrypt user text
-            inputStream = new ObjectInputStream(new FileInputStream(PUBLIC_KEY_FILE));
-            final PublicKey publicKey = (PublicKey) inputStream.readObject();
-            final byte[] cipherText = encrypt(text, publicKey);
-
-            //Decrypt user text
-            inputStream = new ObjectInputStream(new FileInputStream(PRIVATE_KEY_FILE));
-            final PrivateKey privateKey = (PrivateKey) inputStream.readObject();
-            final String plainText = decrypt(cipherText, privateKey);
-
-            //Printing of data
-            /*
-            String encryptedText = new String(cipherText, "Unicode");
-            System.out.println(encryptedText);
-            System.out.println(plainText);
-            */
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 }
