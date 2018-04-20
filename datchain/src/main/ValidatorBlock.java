@@ -1,36 +1,35 @@
 package main;
 
-
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+
 import static java.time.Instant.now;
 
-public class CitizenBlock implements Block {
+public class ValidatorBlock implements Block{
 
+    //TODO validators should be authorised through RSA-signed challenge/hash from genesis authority
+    private String genesisSignature;
     private String validatorIdent;
     private String validatorPubKey;
-    private String citizenIdent;
-    private String citizenPubKey;
     private String hash;
     private String prevHash;
     private long timestamp;
 
-    public CitizenBlock(String validatorIdent, String validatorPubKey, String citizenIdent, String citizenPubKey, String prevHash) {
+    public ValidatorBlock(String genesisSignature, String validatorIdent, String validatorPubKey, String hash, String prevHash, long timestamp) {
+        this.genesisSignature = genesisSignature;
         this.validatorIdent = validatorIdent;
         this.validatorPubKey = validatorPubKey;
-        this.citizenIdent = citizenIdent;
-        this.citizenPubKey = citizenPubKey;
         this.prevHash = prevHash;
-        //Unix Epoch
         this.timestamp = now().getEpochSecond();
         this.hash = computeHash();
     }
 
+    @Override
     public String computeHash() {
         //TODO should grab and implement chain-index
-        String hashInput = validatorIdent + validatorPubKey + citizenIdent + citizenPubKey + prevHash + timestamp;
+        String hashInput = validatorIdent + validatorPubKey + prevHash + timestamp + genesisSignature;
 
         MessageDigest messageDigest = null;
 
@@ -48,23 +47,28 @@ public class CitizenBlock implements Block {
         return String.format("%064x", new BigInteger(1, messageDigest.digest()));
     }
 
+    @Override
     public String getHash() {
         return this.hash;
     }
 
+    @Override
     public String getPrevHash() {
         return this.prevHash;
     }
 
+    @Override
     public long getTimestamp() {
         return this.timestamp;
     }
 
+    @Override
     public String getPubKey() {
-        return this.citizenPubKey;
+        return validatorPubKey;
     }
 
+    @Override
     public String getIdentity() {
-        return this.citizenIdent;
+        return validatorIdent;
     }
 }
