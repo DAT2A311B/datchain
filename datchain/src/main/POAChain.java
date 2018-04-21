@@ -2,10 +2,23 @@ package main;
 
 import java.util.ArrayList;
 
-class POAChain<Block> extends ArrayList<Block> implements Blockchain {
+class POAChain extends ArrayList<Block> implements Blockchain {
 
+
+    @Override
+    public boolean add(Block block) {
+        //Should implement a validator check, if not genesis
+        try {
+            //if (validator)
+            super.add(block);
+            return true;
+        } catch (IllegalArgumentException e) {
+            System.out.println("Caught IllegalArgumentException: " + e.getMessage());
+            return false;
+        }
+    }
+    /*
     public boolean addBlock(Block block) {
-
         //Should implement a validator check, if not genesis
         try {
             //if (validator)
@@ -17,6 +30,7 @@ class POAChain<Block> extends ArrayList<Block> implements Blockchain {
         }
 
     }
+    */
 
     public Block getHead() {
         Block head;
@@ -47,7 +61,7 @@ class POAChain<Block> extends ArrayList<Block> implements Blockchain {
         });
         return true;
         */
-        return false;
+        return true;
     }
 
 }

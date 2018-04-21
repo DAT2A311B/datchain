@@ -21,10 +21,10 @@ public class Datchain {
 
         System.out.println("n blocks in chain01: " + chain01.size());
 
-        POAChain<Block> chain02 = new POAChain<>();
-        chain02.addBlock(block01);
-        chain02.addBlock(block02);
-        chain02.addBlock(block03);
+        POAChain chain02 = new POAChain();
+        chain02.add(block01);
+        chain02.add(block02);
+        chain02.add(block03);
 
         System.out.println("n blocks in chain02: " + chain02.size());
 
@@ -32,11 +32,11 @@ public class Datchain {
 
         System.out.println("index of block03: " + chain02.indexOf(block03));
 
-        chain02.remove(2);
+        if (chain02.remove(2) == block03) System.out.println("Successfully removed block03");
 
         System.out.println("n blocks in chain02: " + chain02.size());
 
-        chain02.validateChain(chain02);
+        if (chain02.validateChain(chain02)) System.out.println("chain02 validated!");
         chain02.getHead();
 
     }
