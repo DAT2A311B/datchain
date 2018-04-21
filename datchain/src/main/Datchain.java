@@ -37,6 +37,7 @@ public class Datchain {
         System.out.println("n blocks in chain02: " + chain02.size());
 
         chain02.validateChain(chain02);
+        chain02.getHead();
 
     }
 
