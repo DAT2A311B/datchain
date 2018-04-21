@@ -2,9 +2,7 @@ package main;
 
 import java.util.ArrayList;
 
-class Chain<Block> extends ArrayList<Block> {
-
-    Chain<Block> datchain = new Chain<>();
+class POAChain<Block> extends ArrayList<Block> implements Blockchain {
 
     public boolean addBlock(Block block) {
 
@@ -21,9 +19,9 @@ class Chain<Block> extends ArrayList<Block> {
     }
 
     public Block getHead() {
-        Block head = null;
-        if (this.datchain.size() > 0) {
-            head = this.datchain.get(this.datchain.size() - 1);
+        Block head;
+        if (this.size() > 0) {
+            head = this.get(this.size() - 1);
         } else {
             throw new RuntimeException("No blocks added, can't get head");
         }
@@ -34,9 +32,9 @@ class Chain<Block> extends ArrayList<Block> {
         return get(index);
     }
 
-    public boolean validateChain(Chain chain) {
+    public boolean validateChain(POAChain chain) {
         //TODO test validation of chain of hashes
-
+        /*
         for (Block block : chain) {
             //Doesn't seem to work, how do we abstract a block interface and it's methods without specifying
             block.getHash();
@@ -49,7 +47,7 @@ class Chain<Block> extends ArrayList<Block> {
         });
         return true;
         */
+        return false;
     }
-
 
 }

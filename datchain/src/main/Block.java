@@ -1,6 +1,6 @@
 package main;
 
-public interface Block {
+interface Block {
 
     //shared functionality of all blocks
     String computeHash();
