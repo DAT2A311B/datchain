@@ -7,7 +7,7 @@ import java.security.NoSuchAlgorithmException;
 
 import static java.time.Instant.now;
 
-public class ValidatorBlock implements Block{
+public class ValidatorBlock extends BlockAbstract{
 
     //TODO validators should be authorised through RSA-signed challenge/hash from genesis authority
     private String genesisSignature;

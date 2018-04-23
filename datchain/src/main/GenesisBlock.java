@@ -1,7 +1,5 @@
 package main;
 
-import main.Block;
-
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -9,7 +7,7 @@ import java.security.NoSuchAlgorithmException;
 
 import static java.time.Instant.now;
 
-public class GenesisBlock implements Block{
+public class GenesisBlock extends BlockAbstract {
 
     private String genesisAuthorityIdentity;
     private String genesisAuthorityPubKey;

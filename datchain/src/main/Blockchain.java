@@ -2,5 +2,5 @@ package main;
 
 interface Blockchain {
 
-    Block getHead();
+    BlockAbstract getHead();
 }

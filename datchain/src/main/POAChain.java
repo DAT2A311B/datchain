@@ -2,10 +2,10 @@ package main;
 
 import java.util.ArrayList;
 
-public class POAChain extends ArrayList<Block> implements Blockchain {
+public class POAChain extends ArrayList<BlockAbstract> implements Blockchain {
 
     @Override
-    public boolean add(Block block) {
+    public boolean add(BlockAbstract block) {
         //Should implement a validator check, if not genesis
         try {
             //if (validator)
@@ -18,8 +18,8 @@ public class POAChain extends ArrayList<Block> implements Blockchain {
     }
 
     //ArrayList doesn't implement a .last() method, thus we implement one ourselves
-    public Block getHead() {
-        Block head;
+    public BlockAbstract getHead() {
+        BlockAbstract head;
         if (this.size() > 0) {
             head = this.get(this.size() - 1);
         } else {
@@ -28,8 +28,8 @@ public class POAChain extends ArrayList<Block> implements Blockchain {
         return head;
     }
 
-    public Block getBlock(int index) {
-        Block block;
+    public BlockAbstract getBlock(int index) {
+        BlockAbstract block;
         try {
             block = get(index);
         } catch (IndexOutOfBoundsException e) {
@@ -40,19 +40,6 @@ public class POAChain extends ArrayList<Block> implements Blockchain {
 
     public boolean validateChain() {
         //TODO test validation of chain of hashes
-        /*
-        for (Block block : chain) {
-            //Doesn't seem to work, how do we abstract a block interface and it's methods without specifying
-            block.getHash();
-        }
-
-        //might not be able to use lambda expressions
-        /*chain.forEach( block -> { try {
-
-        }
-        });
-        return true;
-        */
         return true;
     }
 }
