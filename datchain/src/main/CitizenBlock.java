@@ -7,7 +7,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import static java.time.Instant.now;
 
-public class CitizenBlock implements Block {
+public class CitizenBlock extends Block {
 
     private String validatorIdent;
     private String validatorPubKey;
@@ -60,7 +60,7 @@ public class CitizenBlock implements Block {
         return this.timestamp;
     }
 
-    public String getPubKey() {
+    public String getIdentityPublicKey() {
         return this.citizenPubKey;
     }
 

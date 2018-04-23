@@ -1,7 +1,5 @@
 package main;
 
-import main.Block;
-
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -9,7 +7,7 @@ import java.security.NoSuchAlgorithmException;
 
 import static java.time.Instant.now;
 
-public class GenesisBlock implements Block{
+public class GenesisBlock extends Block {
 
     private String genesisAuthorityIdentity;
     private String genesisAuthorityPubKey;
@@ -25,7 +23,6 @@ public class GenesisBlock implements Block{
         this.hash = computeHash();
     }
 
-    @Override
     public String computeHash() {
         //TODO should grab and implement chain-index
         String hashInput = genesisAuthorityIdentity + genesisAuthorityPubKey + prevHash + timestamp;
@@ -62,7 +59,7 @@ public class GenesisBlock implements Block{
     }
 
     @Override
-    public String getPubKey() {
+    public String getIdentityPublicKey() {
         return this.genesisAuthorityPubKey;
     }
 
