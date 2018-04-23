@@ -2,7 +2,7 @@ package main;
 
 import java.util.ArrayList;
 
-class POAChain extends ArrayList<Block> implements Blockchain {
+public class POAChain extends ArrayList<Block> implements Blockchain {
 
     @Override
     public boolean add(Block block) {
@@ -38,7 +38,7 @@ class POAChain extends ArrayList<Block> implements Blockchain {
         return block;
     }
 
-    public boolean validateChain(POAChain chain) {
+    public boolean validateChain() {
         //TODO test validation of chain of hashes
         /*
         for (Block block : chain) {
