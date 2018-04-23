@@ -2,16 +2,15 @@ package test;
 
 import main.CitizenBlock;
 import main.*;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class POAChainTest {
+class BlockchainTest {
 
     @Test
     void add() {
-        POAChain chain = new POAChain();
+        Blockchain chain = new Blockchain();
         CitizenBlock block01 = new CitizenBlock("Validator","ValidatorPubkey", "Citizen Name", "CitizenPubKey", "9817324939382");
         CitizenBlock block02 = new CitizenBlock("Validator","ValidatorPubkey", "Citizen Name", "CitizenPubKey", "9817324939382");
         CitizenBlock block03 = new CitizenBlock("Validator","ValidatorPubkey", "Citizen Name", "CitizenPubKey", "9817324939382");
@@ -23,7 +22,7 @@ class POAChainTest {
 
     @Test
     void getHead() {
-        POAChain chain = new POAChain();
+        Blockchain chain = new Blockchain();
         CitizenBlock block01 = new CitizenBlock("Validator","ValidatorPubkey", "Citizen Name", "CitizenPubKey", "9817324939382");
         CitizenBlock block02 = new CitizenBlock("Validator","ValidatorPubkey", "Citizen Name", "CitizenPubKey", "9817324939382");
         CitizenBlock block03 = new CitizenBlock("Validator","ValidatorPubkey", "Citizen Name", "CitizenPubKey", "9817324939382");
@@ -37,7 +36,7 @@ class POAChainTest {
 
     @Test
     void getBlock() {
-        POAChain chain = new POAChain();
+        Blockchain chain = new Blockchain();
         CitizenBlock block01 = new CitizenBlock("Validator","ValidatorPubkey", "Citizen Name", "CitizenPubKey", "9817324939382");
         CitizenBlock block02 = new CitizenBlock("Validator","ValidatorPubkey", "Citizen Name", "CitizenPubKey", "9817324939382");
         CitizenBlock block03 = new CitizenBlock("Validator","ValidatorPubkey", "Citizen Name", "CitizenPubKey", "9817324939382");
@@ -52,7 +51,7 @@ class POAChainTest {
 
     @Test
     void validateChain() {
-        POAChain chain = new POAChain();
+        Blockchain chain = new Blockchain();
         CitizenBlock block01 = new CitizenBlock("Validator","ValidatorPubkey", "Citizen Name", "CitizenPubKey", "9817324939382");
         CitizenBlock block02 = new CitizenBlock("Validator","ValidatorPubkey", "Citizen Name", "CitizenPubKey", "9817324939382");
         CitizenBlock block03 = new CitizenBlock("Validator","ValidatorPubkey", "Citizen Name", "CitizenPubKey", "9817324939382");

@@ -21,7 +21,7 @@ public class Datchain {
 
         System.out.println("n blocks in chain01: " + chain01.size());
 
-        POAChain chain02 = new POAChain();
+        Blockchain chain02 = new Blockchain();
         chain02.add(block01);
         chain02.add(block02);
         chain02.add(block03);
