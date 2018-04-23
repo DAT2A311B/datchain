@@ -59,7 +59,7 @@ public class GenesisBlock extends Block {
     }
 
     @Override
-    public String getPubKey() {
+    public String getIdentityPublicKey() {
         return this.genesisAuthorityPubKey;
     }
 

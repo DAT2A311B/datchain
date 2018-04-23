@@ -60,7 +60,7 @@ public class CitizenBlock extends Block {
         return this.timestamp;
     }
 
-    public String getPubKey() {
+    public String getIdentityPublicKey() {
         return this.citizenPubKey;
     }
 

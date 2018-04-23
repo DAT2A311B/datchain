@@ -7,10 +7,10 @@ import java.security.NoSuchAlgorithmException;
 
 abstract class Block {
 
-    private String validatorIdent;
-    private String validatorPubKey;
-    private String citizenIdent;
-    private String citizenPubKey;
+    private String identity;
+    private String identityPublicKey;
+    private String validatorIdentity;
+    private String validatorPublicKey;
     private String hash;
     private String prevHash;
     private long timestamp;
@@ -45,13 +45,20 @@ abstract class Block {
         return this.timestamp;
     }
 
-    public String getPubKey() {
-        return this.citizenPubKey;
+    public String getIdentity() {
+        return this.identity;
     }
 
-    public String getIdentity() {
-        //TODO should be generic
-        return this.citizenIdent;
+    public String getIdentityPublicKey() {
+        return this.identityPublicKey;
+    }
+
+    public String getValidatorIdentity() {
+        return this.validatorIdentity;
+    }
+
+    public String getValidatorPublicKey() {
+        return this.validatorPublicKey;
     }
 }
 

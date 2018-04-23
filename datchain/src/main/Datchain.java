@@ -9,17 +9,9 @@ public class Datchain {
 
         CitizenBlock block01 = new CitizenBlock("Validator","ValidatorPubkey", "Citizen Name", "CitizenPubKey", "9817324939382");
         CitizenBlock block02 = new CitizenBlock("Validator","ValidatorPubkey", "Citizen Name", "CitizenPubKey", block01.getHash());
-        CitizenBlock block03 = new CitizenBlock("Validator","ValidatorPubkey", "Citizen Name", "CitizenPubKey", "9817324939382");
+        CitizenBlock block03 = new CitizenBlock("Validator","ValidatorPubkey", "Citizen Name", "CitizenPubKey", block02.getHash());
 
-        System.out.println("try hashes: " + "\n" + block02.getPrevHash() + "\n" + block01.getHash() + "\n");
-
-        //TODO consider using linked lists for another dimension of blocks - beware
-        List<Block> chain01 = new ArrayList<>();
-        chain01.add(block01);
-        chain01.add(block02);
-        chain01.add(block03);
-
-        System.out.println("n blocks in chain01: " + chain01.size());
+        System.out.println("try compare hashes: " + "\n" + block02.getPrevHash() + "\n" + block01.getHash() + "\n");
 
         Blockchain chain02 = new Blockchain();
         chain02.add(block01);

@@ -63,7 +63,7 @@ public class ValidatorBlock extends Block {
     }
 
     @Override
-    public String getPubKey() {
+    public String getIdentityPublicKey() {
         return validatorPubKey;
     }
 

@@ -71,7 +71,7 @@ class CitizenBlockTest {
     @Test
     void getPubKey() {
         CitizenBlock block01 = new CitizenBlock("Validator", "ValidatorPubkey", "Citizen Name", "CitizenPubKey", "0000000000");
-        assertEquals("CitizenPubKey", block01.getPubKey());
+        assertEquals("CitizenPubKey", block01.getIdentityPublicKey());
     }
 
     @Test

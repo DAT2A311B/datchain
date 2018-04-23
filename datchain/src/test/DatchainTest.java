@@ -7,7 +7,7 @@ import static java.time.Instant.now;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-class DatchainTest {
+class DatchainTest extends CitizenBlockTest {
 
     @Test
     void testBlockDifferent() {
