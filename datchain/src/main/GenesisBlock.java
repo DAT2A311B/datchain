@@ -7,7 +7,7 @@ import java.security.NoSuchAlgorithmException;
 
 import static java.time.Instant.now;
 
-public class GenesisBlock extends BlockAbstract {
+public class GenesisBlock extends Block {
 
     private String genesisAuthorityIdentity;
     private String genesisAuthorityPubKey;
@@ -23,7 +23,6 @@ public class GenesisBlock extends BlockAbstract {
         this.hash = computeHash();
     }
 
-    @Override
     public String computeHash() {
         //TODO should grab and implement chain-index
         String hashInput = genesisAuthorityIdentity + genesisAuthorityPubKey + prevHash + timestamp;

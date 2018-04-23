@@ -7,7 +7,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import static java.time.Instant.now;
 
-public class CitizenBlock extends BlockAbstract {
+public class CitizenBlock extends Block {
 
     private String validatorIdent;
     private String validatorPubKey;

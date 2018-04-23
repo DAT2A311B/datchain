@@ -14,7 +14,7 @@ public class Datchain {
         System.out.println("try hashes: " + "\n" + block02.getPrevHash() + "\n" + block01.getHash() + "\n");
 
         //TODO consider using linked lists for another dimension of blocks - beware
-        List<BlockAbstract> chain01 = new ArrayList<>();
+        List<Block> chain01 = new ArrayList<>();
         chain01.add(block01);
         chain01.add(block02);
         chain01.add(block03);

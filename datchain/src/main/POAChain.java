@@ -2,10 +2,10 @@ package main;
 
 import java.util.ArrayList;
 
-public class POAChain extends ArrayList<BlockAbstract> implements Blockchain {
+public class POAChain extends ArrayList<Block> implements Blockchain {
 
     @Override
-    public boolean add(BlockAbstract block) {
+    public boolean add(Block block) {
         //Should implement a validator check, if not genesis
         try {
             //if (validator)
@@ -18,8 +18,8 @@ public class POAChain extends ArrayList<BlockAbstract> implements Blockchain {
     }
 
     //ArrayList doesn't implement a .last() method, thus we implement one ourselves
-    public BlockAbstract getHead() {
-        BlockAbstract head;
+    public Block getHead() {
+        Block head;
         if (this.size() > 0) {
             head = this.get(this.size() - 1);
         } else {
@@ -28,8 +28,8 @@ public class POAChain extends ArrayList<BlockAbstract> implements Blockchain {
         return head;
     }
 
-    public BlockAbstract getBlock(int index) {
-        BlockAbstract block;
+    public Block getBlock(int index) {
+        Block block;
         try {
             block = get(index);
         } catch (IndexOutOfBoundsException e) {

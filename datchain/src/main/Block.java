@@ -5,7 +5,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-abstract class BlockAbstract {
+abstract class Block {
 
     private String validatorIdent;
     private String validatorPubKey;
