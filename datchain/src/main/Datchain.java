@@ -9,22 +9,14 @@ public class Datchain {
 
         CitizenBlock block01 = new CitizenBlock("Validator","ValidatorPubkey", "Citizen Name", "CitizenPubKey", "9817324939382");
         CitizenBlock block02 = new CitizenBlock("Validator","ValidatorPubkey", "Citizen Name", "CitizenPubKey", block01.getHash());
-        CitizenBlock block03 = new CitizenBlock("Validator","ValidatorPubkey", "Citizen Name", "CitizenPubKey", "9817324939382");
+        CitizenBlock block03 = new CitizenBlock("Validator","ValidatorPubkey", "Citizen Name", "CitizenPubKey", block02.getHash());
 
-        System.out.println("try hashes: " + "\n" + block02.getPrevHash() + "\n" + block01.getHash() + "\n");
+        System.out.println("try compare hashes: " + "\n" + block02.getPrevHash() + "\n" + block01.getHash() + "\n");
 
-        //TODO consider using linked lists for another dimension of blocks - beware
-        List<Block> chain01 = new ArrayList<>();
-        chain01.add(block01);
-        chain01.add(block02);
-        chain01.add(block03);
-
-        System.out.println("n blocks in chain01: " + chain01.size());
-
-        Chain<Block> chain02 = new Chain<>();
-        chain02.addBlock(block01);
-        chain02.addBlock(block02);
-        chain02.addBlock(block03);
+        Blockchain chain02 = new Blockchain();
+        chain02.add(block01);
+        chain02.add(block02);
+        chain02.add(block03);
 
         System.out.println("n blocks in chain02: " + chain02.size());
 
@@ -32,9 +24,12 @@ public class Datchain {
 
         System.out.println("index of block03: " + chain02.indexOf(block03));
 
-        chain02.remove(2);
+        if (chain02.remove(2) == block03) System.out.println("Successfully removed block03");
 
         System.out.println("n blocks in chain02: " + chain02.size());
+
+        if (chain02.validateChain()) System.out.println("chain02 validated!");
+        chain02.getHead();
 
     }
 
