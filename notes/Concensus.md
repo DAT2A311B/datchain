@@ -12,6 +12,13 @@ Validators should be persons working for this govermental organ with access to s
 - b) Eligibility to be able to stake identity should be difficult to obtain. 
 - c) The procedure establishing an authorty must be unfaltering, in order to uphold the integrity of the authority.
 
+Criteria `a` could be satisfied with hash of validator information RSA-signed by genesis-authority. 
+
+`Crypt(genesisPrivKey, SHA2(validatorIdent + validatorPubKey + timestamp + dob + hash + prevHash))`
+
+Criteria `b` could be satisfied by strict usage and vetting of workers under the govermental organ responsible for the registry. Strict usage of the GenesisAuthority (GA) is a requirement, this is, inherently, the first link of trust in the chain and all following entries rely on the correctness of this authority.
+
+Criteria `c` could be satisfied by thoroughly documenting the creation and procedure of which the GA is created. Some amount of trust must be given to the governmental organ, that they're conducting their work in a responsible way.
 
 ## Citizens
 Citizens would have only one 'active' identity-block at any time. Further work must be done on how a process to update an identity-block of a citizen. This block would hold information that Danish CPR already facilitates, this would be full name, D.O.B and notably public key-component, merging the functions of NemID and CPR into one. A field of the signing authority must also be included in each citizen-block for connecting the string of trust. This would also easily taint all identities forged by a possible malicious validator, although the system should be designed to minimize the risk of this scenario, it's important to design mechanisms for the eventuality.
@@ -27,7 +34,7 @@ It could be possible, although unnecessary to implement a minor Proof-of-Work co
 
 `Crypt("crypt_key", "message")`
 
-`Crypt("validator_privkey", "SHA2(validator + timestamp + prev_hash + ident_pubkey + ident + dob) + nonce") `
+`Crypt(validatorPrivKey", "SHA2(validatorIdent + timestamp + prevHash + identityPubKey + identity + dob) + nonce") `
 
 ## TODO
 - Concensus-requirements - minimum amount of validators for a correctly forged identity
