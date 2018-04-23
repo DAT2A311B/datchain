@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 class POAChain extends ArrayList<Block> implements Blockchain {
 
-
     @Override
     public boolean add(Block block) {
         //Should implement a validator check, if not genesis
@@ -17,21 +16,8 @@ class POAChain extends ArrayList<Block> implements Blockchain {
             return false;
         }
     }
-    /*
-    public boolean addBlock(Block block) {
-        //Should implement a validator check, if not genesis
-        try {
-            //if (validator)
-            add(block);
-            return true;
-        } catch (IllegalArgumentException e) {
-            System.out.println("Caught IllegalArgumentException: " + e.getMessage());
-            return false;
-        }
 
-    }
-    */
-
+    //ArrayList doesn't implement a .last() method, thus we implement one ourselves
     public Block getHead() {
         Block head;
         if (this.size() > 0) {
@@ -43,7 +29,13 @@ class POAChain extends ArrayList<Block> implements Blockchain {
     }
 
     public Block getBlock(int index) {
-        return get(index);
+        Block block;
+        try {
+            block = get(index);
+        } catch (IndexOutOfBoundsException e) {
+            throw new IndexOutOfBoundsException("Index out of bounds, can't get block");
+        }
+        return block;
     }
 
     public boolean validateChain(POAChain chain) {
@@ -63,5 +55,4 @@ class POAChain extends ArrayList<Block> implements Blockchain {
         */
         return true;
     }
-
 }
