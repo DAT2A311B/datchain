@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -24,9 +25,9 @@ public class MainScreen {
 
         var Search_button = new Button("Search");
         root.setConstraints(Search_button,3,0);
-        Search_button.setTranslateX(310);
         Search_button.setMinWidth(100);
         root.getChildren().add(Search_button);
+        Search_button.setOnMouseClicked(event -> Search.Search());
 
         var logout_button = new Button("Logout");
         root.setConstraints(logout_button,0,0);
@@ -71,6 +72,7 @@ public class MainScreen {
 
         var public_key = new Label("");
         root.setConstraints(public_key,2,5);
+        public_key.setMinWidth(300);
         root.getChildren().add(public_key);
 
         primaryStage.setScene(scene);
