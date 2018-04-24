@@ -5,17 +5,26 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import static java.time.Instant.now;
+
 abstract class Block {
 
     private String identity;
     private String identityPublicKey;
-    private String validatorIdentity;
-    private String validatorPublicKey;
-    private String hash;
     private String prevHash;
+    private String hash;
     private long timestamp;
 
-    public String computeHash(String hashInput) {
+    protected Block(String identity, String identityPublicKey, String prevHash, String hashInput) {
+        this.identity = identity;
+        this.identityPublicKey = identityPublicKey;
+        this.prevHash = prevHash;
+        this.timestamp = now().getEpochSecond();
+        this.hash = computeHash(hashInput);
+    }
+
+
+    String computeHash(String hashInput) {
 
         MessageDigest messageDigest = null;
 
@@ -51,14 +60,6 @@ abstract class Block {
 
     public String getIdentityPublicKey() {
         return this.identityPublicKey;
-    }
-
-    public String getValidatorIdentity() {
-        return this.validatorIdentity;
-    }
-
-    public String getValidatorPublicKey() {
-        return this.validatorPublicKey;
     }
 }
 
