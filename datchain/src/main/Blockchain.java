@@ -1,6 +1,8 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.ListIterator;
 
 public class Blockchain extends ArrayList<Block> implements Chain {
 
@@ -15,6 +17,10 @@ public class Blockchain extends ArrayList<Block> implements Chain {
             System.out.println("Caught IllegalArgumentException: " + e.getMessage());
             return false;
         }
+    }
+
+    public Blockchain getChain() {
+        return this;
     }
 
     //ArrayList doesn't implement a .last() method, thus we implement one ourselves
@@ -39,7 +45,28 @@ public class Blockchain extends ArrayList<Block> implements Chain {
     }
 
     public boolean validateChain() {
-        //TODO test validation of chain of hashes
+
+        //stop loop short one of this.size() as last block will not have .next()
+        for (int i = 0; i < this.size() - 1; i++) {
+
+            //assign hashes to new strings for code legibility
+            String currHash = getBlock(i).getHash();
+            String nextPrevHash = getBlock(i+1).getPrevHash();
+
+            //debug sout
+            if (false) {
+                System.out.println("block at index currHash" + i + ": " + currHash);
+                System.out.println("block at index prevHash" + (i + 1) + ": " + nextPrevHash + "\n");
+            }
+
+            //check hash congruency through blocks
+            if ( !currHash.equals(nextPrevHash)) {
+                return false;
+            }
+
+            //TODO should also test chain of RSA-signature from genesis to all validators and possibly citizens
+        }
+        //if no congruency errors are found, chain is valid
         return true;
     }
 }
