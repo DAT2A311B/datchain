@@ -1,6 +1,8 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Blockchain extends ArrayList<Block> implements Chain {
 
@@ -70,6 +72,14 @@ public class Blockchain extends ArrayList<Block> implements Chain {
         }
         //if no congruency errors are found, chain is valid
         return true;
+    }
+
+    public List searchChain(String term) {
+        //TODO should search all sensible fields for term, allowing for fuzzy search
+        //this approach doesn't immediately allow for return either a block or a chain, rather an object
+        List results = this.stream().filter(p -> p.getIdentity().equals(term)).collect(Collectors.toList());
+
+        return results;
     }
 
     //ArrayList doesn't implement a .last() method, thus we implement one ourselves

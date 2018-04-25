@@ -1,5 +1,7 @@
 package main;
 
+import java.util.List;
+
 public class Datchain {
 
     public static void main(String[] args) {
@@ -26,6 +28,9 @@ public class Datchain {
 
         System.out.println("chain02 validated: " + chain02.validateChain());
 
+        List searchResults = chain02.searchChain("Citizen Name1");
+        Object searchBlock = searchResults.get(0);
+        System.out.println(searchBlock.getClass());
     }
 
 }
