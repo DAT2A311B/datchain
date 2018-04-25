@@ -1,16 +1,14 @@
 package main;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.ListIterator;
 
 public class Blockchain extends ArrayList<Block> implements Chain {
 
     @Override
     public boolean add(Block block) {
         //Should implement a validator check, if not genesis
+        //if (validator)
         try {
-            //if (validator)
             super.add(block);
             return true;
         } catch (IllegalArgumentException e) {
@@ -60,7 +58,7 @@ public class Blockchain extends ArrayList<Block> implements Chain {
             }
 
             //check hash congruency through blocks
-            if ( !currHash.equals(nextPrevHash)) {
+            if ( !currHash.equals(nextPrevHash) ) {
                 return false;
             }
 

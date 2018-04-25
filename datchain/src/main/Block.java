@@ -23,7 +23,6 @@ abstract class Block {
         this.hash = computeHash(hashInput);
     }
 
-
     String computeHash(String hashInput) {
 
         MessageDigest messageDigest = null;
