@@ -1,6 +1,5 @@
-package test;
 
-import main.*;
+import main.CitizenBlock;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigInteger;
@@ -15,8 +14,8 @@ class CitizenBlockTest {
 
     @Test
     void computeHash() {
-        CitizenBlock block01 = new CitizenBlock("Validator", "ValidatorPubkey", "Citizen Name", "CitizenPubKey", "9817324939382");
-        String hashInput = "Validator" + "ValidatorPubkey" + "Citizen Name" + "CitizenPubKey" + "9817324939382" + block01.getTimestamp();
+        CitizenBlock block01 = new CitizenBlock("Citizen Name", "CitizenPubKey", "9817324939382", "Validator", "ValidatorPubKey");
+        String hashInput = "Citizen Name" + "CitizenPubKey" + "9817324939382" + "Validator" + "ValidatorPubKey" + block01.getTimestamp();
 
         MessageDigest messageDigest = null;
         try {
@@ -36,8 +35,8 @@ class CitizenBlockTest {
 
     @Test
     void getHash() {
-        CitizenBlock block01 = new CitizenBlock("Validator", "ValidatorPubkey", "Citizen Name", "CitizenPubKey", "9817324939382");
-        String hashInput = "Validator" + "ValidatorPubkey" + "Citizen Name" + "CitizenPubKey" + "9817324939382" + block01.getTimestamp();
+        CitizenBlock block01 = new CitizenBlock("Citizen Name", "CitizenPubKey", "9817324939382", "Validator", "ValidatorPubKey");
+        String hashInput = "Citizen Name" + "CitizenPubKey" + "9817324939382" + "Validator" + "ValidatorPubKey" + block01.getTimestamp();
 
         MessageDigest messageDigest = null;
         try {
@@ -57,8 +56,9 @@ class CitizenBlockTest {
 
     @Test
     void getPrevHash() {
-        CitizenBlock block01 = new CitizenBlock("Validator", "ValidatorPubkey", "Citizen Name", "CitizenPubKey", "0000000000");
-        CitizenBlock block02 = new CitizenBlock("Validator", "ValidatorPubkey", "Citizen Name", "CitizenPubKey", block01.getHash());
+        CitizenBlock block01 = new CitizenBlock("Citizen Name", "CitizenPubKey", "9817324939382", "Validator", "ValidatorPubKey");
+        CitizenBlock block02= new CitizenBlock("Citizen Name", "CitizenPubKey", block01.getHash(), "Validator", "ValidatorPubKey");
+
         assertEquals(block01.getHash(), block02.getPrevHash());
     }
 
@@ -70,13 +70,13 @@ class CitizenBlockTest {
 
     @Test
     void getPubKey() {
-        CitizenBlock block01 = new CitizenBlock("Validator", "ValidatorPubkey", "Citizen Name", "CitizenPubKey", "0000000000");
+        CitizenBlock block01 = new CitizenBlock("Citizen Name", "CitizenPubKey", "9817324939382", "Validator", "ValidatorPubKey");
         assertEquals("CitizenPubKey", block01.getIdentityPublicKey());
     }
 
     @Test
     void getIdentity() {
-        CitizenBlock block01 = new CitizenBlock("Validator", "ValidatorPubkey", "Citizen Name", "CitizenPubKey", "0000000000");
+        CitizenBlock block01 = new CitizenBlock("Citizen Name", "CitizenPubKey", "9817324939382", "Validator", "ValidatorPubKey");
         assertEquals("Citizen Name", block01.getIdentity());
     }
     
