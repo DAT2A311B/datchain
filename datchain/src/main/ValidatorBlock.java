@@ -11,7 +11,7 @@ public class ValidatorBlock extends Block {
         this.genesisSignature = genesisSignature;
     }
 
-    private String getGenesisSignature() {
+    public String getGenesisSignature() {
         return this.genesisSignature;
     }
 }

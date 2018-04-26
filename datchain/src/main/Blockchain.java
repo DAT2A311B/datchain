@@ -1,9 +1,7 @@
 package main;
 
 import me.xdrop.fuzzywuzzy.FuzzySearch;
-
 import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 public class Blockchain extends ArrayList<Block> implements Chain {
 
