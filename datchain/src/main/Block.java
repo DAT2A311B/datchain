@@ -20,7 +20,7 @@ abstract class Block {
         this.identityPublicKey = identityPublicKey;
         this.prevHash = prevHash;
         this.timestamp = now().getEpochSecond();
-        this.hash = computeHash(hashInput);
+        this.hash = computeHash(hashInput + this.timestamp);
     }
 
     private String computeHash(String hashInput) {
