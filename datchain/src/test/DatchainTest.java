@@ -1,13 +1,10 @@
-package test;
-
-import main.*;
+import dk.aau.dat.a311b.datchain.CitizenBlock;
 import org.junit.jupiter.api.Test;
 
 import static java.time.Instant.now;
 import static org.junit.jupiter.api.Assertions.*;
 
-
-class DatchainTest extends CitizenBlockTest {
+class DatchainTest  {
 
     @Test
     void testBlockDifferent() {
@@ -32,8 +29,9 @@ class DatchainTest extends CitizenBlockTest {
 
     @Test
     void testNameCongruency() {
-        CitizenBlock block01 = new CitizenBlock("Validator","ValidatorPubkey", "Citizen Name", "CitizenPubKey", "9817324939382");
-        assertEquals(block01.getIdentity(), "Citizen Name");
+        CitizenBlock citizen01 = new CitizenBlock("Citizen Name1", "CitizenPublicKey", "0", "0", "0");
+        assertTrue(citizen01.getIdentity().equals("Citizen Name1"));
+
         //TODO Must also test validator info
     }
 

@@ -1,4 +1,4 @@
-package main;
+package dk.aau.dat.a311b.datchain;
 
 interface Chain {
 
