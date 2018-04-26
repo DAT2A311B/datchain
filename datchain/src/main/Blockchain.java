@@ -77,9 +77,7 @@ public class Blockchain extends ArrayList<Block> implements Chain {
     public List searchChain(String term) {
         //TODO should search all sensible fields for term, allowing for fuzzy search
         //this approach doesn't immediately allow for return either a block or a chain, rather an object
-        List results = this.stream().filter(p -> p.getIdentity().equals(term)).collect(Collectors.toList());
-
-        return results;
+        return this.stream().filter(p -> p.getIdentity().equals(term)).collect(Collectors.toList());
     }
 
     //ArrayList doesn't implement a .last() method, thus we implement one ourselves

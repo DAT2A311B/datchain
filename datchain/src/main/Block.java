@@ -9,11 +9,11 @@ import static java.time.Instant.now;
 
 abstract class Block {
 
-    private String identity;
-    private String identityPublicKey;
-    private String prevHash;
-    private String hash;
-    private long timestamp;
+    private final String identity;
+    private final String identityPublicKey;
+    private final String prevHash;
+    private final String hash;
+    private final long timestamp;
 
     protected Block(String identity, String identityPublicKey, String prevHash, String hashInput) {
         this.identity = identity;
