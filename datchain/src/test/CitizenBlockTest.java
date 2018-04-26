@@ -1,5 +1,5 @@
 
-import main.CitizenBlock;
+import dk.aau.dat.a311b.datchain.CitizenBlock;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigInteger;

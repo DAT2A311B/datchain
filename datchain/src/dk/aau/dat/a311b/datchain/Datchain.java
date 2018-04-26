@@ -1,9 +1,4 @@
-package main;
-
-//https://github.com/xdrop/fuzzywuzzy for fuzzy string matching
-import me.xdrop.fuzzywuzzy.FuzzySearch;
-
-import java.util.ArrayList;
+package dk.aau.dat.a311b.datchain;
 
 public class Datchain {
 
@@ -31,6 +26,7 @@ public class Datchain {
 
         System.out.println("chain02 validated: " + chain02.validateChain());
 
+        //testing out fuzzy search matching
         Block searchResultBlock01 = chain02.searchSingleIdentity("citiz nahym");
         Block searchResultBlock02 = chain02.searchSinglePublicKey("gænæsæs Påblæk kay");
         System.out.println(searchResultBlock01.getIdentity());

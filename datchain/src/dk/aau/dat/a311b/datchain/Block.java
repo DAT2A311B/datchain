@@ -1,4 +1,4 @@
-package main;
+package dk.aau.dat.a311b.datchain;
 
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;

@@ -1,4 +1,4 @@
-import main.ValidatorBlock;
+import dk.aau.dat.a311b.datchain.ValidatorBlock;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

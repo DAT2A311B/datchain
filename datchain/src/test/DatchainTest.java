@@ -1,4 +1,4 @@
-import main.*;
+import dk.aau.dat.a311b.datchain.CitizenBlock;
 import org.junit.jupiter.api.Test;
 
 import static java.time.Instant.now;

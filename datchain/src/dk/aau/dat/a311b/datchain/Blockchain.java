@@ -1,5 +1,6 @@
-package main;
+package dk.aau.dat.a311b.datchain;
 
+//https://github.com/xdrop/fuzzywuzzy for fuzzy string matching
 import me.xdrop.fuzzywuzzy.FuzzySearch;
 import java.util.ArrayList;
 
@@ -73,7 +74,8 @@ public class Blockchain extends ArrayList<Block> implements Chain {
         return true;
     }
 
-    //TODO should be expanded to create another arraylist of blocks
+    //TODO should be expanded to create another arraylist of blocks,
+    //TODO should also utilise the ratio supplied by fuzzysearch to suggest a block, the user might be searching for
     public Block searchSingleIdentity(String term) {
 
         //create string-array for holding identities for searching

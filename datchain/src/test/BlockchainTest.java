@@ -1,7 +1,7 @@
-import main.Blockchain;
-import main.CitizenBlock;
-import main.GenesisBlock;
-import main.ValidatorBlock;
+import dk.aau.dat.a311b.datchain.Blockchain;
+import dk.aau.dat.a311b.datchain.CitizenBlock;
+import dk.aau.dat.a311b.datchain.GenesisBlock;
+import dk.aau.dat.a311b.datchain.ValidatorBlock;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
