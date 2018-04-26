@@ -1,4 +1,4 @@
-package main;
+package dk.aau.dat.a311b.datchain;
 
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
@@ -20,10 +20,10 @@ abstract class Block {
         this.identityPublicKey = identityPublicKey;
         this.prevHash = prevHash;
         this.timestamp = now().getEpochSecond();
-        this.hash = computeHash(hashInput);
+        this.hash = computeHash(hashInput + this.timestamp);
     }
 
-    String computeHash(String hashInput) {
+    private String computeHash(String hashInput) {
 
         MessageDigest messageDigest = null;
 
