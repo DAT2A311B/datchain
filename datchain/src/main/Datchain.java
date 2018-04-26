@@ -1,6 +1,9 @@
 package main;
 
-import java.util.List;
+//https://github.com/xdrop/fuzzywuzzy for fuzzy string matching
+import me.xdrop.fuzzywuzzy.FuzzySearch;
+
+import java.util.ArrayList;
 
 public class Datchain {
 
@@ -28,9 +31,11 @@ public class Datchain {
 
         System.out.println("chain02 validated: " + chain02.validateChain());
 
-        List searchResults = chain02.searchChain("Citizen Name1");
-        Object searchBlock = searchResults.get(0);
-        System.out.println(searchBlock.getClass());
-    }
+        Block searchResultBlock01 = chain02.searchSingleIdentity("citiz nahym");
+        Block searchResultBlock02 = chain02.searchSinglePublicKey("gænæsæs Påblæk kay");
+        System.out.println(searchResultBlock01.getIdentity());
+        System.out.println(searchResultBlock02.getIdentity() + " " + searchResultBlock02.getIdentityPublicKey());
 
+
+    }
 }
