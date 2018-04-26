@@ -1,36 +1,36 @@
 package main;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Datchain {
 
     public static void main(String[] args) {
 
-        CitizenBlock block01 = new CitizenBlock("Validator","ValidatorPubkey", "Citizen Name", "CitizenPubKey", "9817324939382");
-        CitizenBlock block02 = new CitizenBlock("Validator","ValidatorPubkey", "Citizen Name", "CitizenPubKey", block01.getHash());
-        CitizenBlock block03 = new CitizenBlock("Validator","ValidatorPubkey", "Citizen Name", "CitizenPubKey", block02.getHash());
+        GenesisBlock genesis01 = new GenesisBlock("Genesis", "GenesisPublicKey", "0000");
 
-        System.out.println("try compare hashes: " + "\n" + block02.getPrevHash() + "\n" + block01.getHash() + "\n");
+        ValidatorBlock validator01 = new ValidatorBlock("Validator", "ValidatorPublicKey", genesis01.getHash(), "GenesisSignature");
+        ValidatorBlock validator02 = new ValidatorBlock("Validator", "ValidatorPublicKey", validator01.getHash(), "GenesisSignature");
+        ValidatorBlock validator03 = new ValidatorBlock("Validator", "ValidatorPublicKey", validator02.getHash(), "GenesisSignature");
+
+        CitizenBlock citizen01 = new CitizenBlock("Citizen Name1", "CitizenPublicKey", validator03.getHash(), validator01.getIdentity(), validator01.getIdentityPublicKey());
+        CitizenBlock citizen02 = new CitizenBlock("Citizen Name2", "CitizenPublicKey", citizen01.getHash(), validator02.getIdentity(), validator02.getIdentityPublicKey());
+        CitizenBlock citizen03 = new CitizenBlock("Citizen Name3", "CitizenPublicKey", citizen02.getHash(), validator03.getIdentity(), validator03.getIdentityPublicKey());
 
         Blockchain chain02 = new Blockchain();
-        chain02.add(block01);
-        chain02.add(block02);
-        chain02.add(block03);
+        chain02.add(genesis01);
+        chain02.add(validator01);
+        chain02.add(validator02);
+        chain02.add(validator03);
 
-        System.out.println("n blocks in chain02: " + chain02.size());
+        chain02.add(citizen01);
+        chain02.add(citizen02);
+        chain02.add(citizen03);
 
-        System.out.println("chain02 contains block01? " + chain02.contains(block01));
+        System.out.println("chain02 validated: " + chain02.validateChain());
 
-        System.out.println("index of block03: " + chain02.indexOf(block03));
-
-        if (chain02.remove(2) == block03) System.out.println("Successfully removed block03");
-
-        System.out.println("n blocks in chain02: " + chain02.size());
-
-        if (chain02.validateChain()) System.out.println("chain02 validated!");
-        chain02.getHead();
-
+        List searchResults = chain02.searchChain("Citizen Name1");
+        Object searchBlock = searchResults.get(0);
+        System.out.println(searchBlock.getClass());
     }
 
 }
