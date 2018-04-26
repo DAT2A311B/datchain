@@ -8,29 +8,32 @@ public class Blockchain extends ArrayList<Block> implements Chain {
 
     public boolean addValidatedBlock(Block block, Block validator) {
 
+        //if local, current chain is not valid, abort adding block
+        if (!this.validateChain()) return false;
+
         //check if block to be added is of GenesisBlock-type and if chainsize is 0
         if (GenesisBlock.class.isAssignableFrom(block.getClass()) && this.size() == 0) {
             System.out.println("Block is of GenesisBlock-type");
+            //TODO validate genesis-block by polling network resources for an existing, older chain, if not assume genuine
+            this.add(block);
 
         //check if block to be added is of ValidatorBlock-type and if chainsize is greater than 0
         } else if (ValidatorBlock.class.isAssignableFrom(block.getClass()) && this.size() > 0) {
             System.out.println("Block is of ValidatorBlock-type and chain has at least one block");
+            //TODO encrypt hash of proposed ValidatorBlock with public-key of genesis, confirming the authority of genesis
+            //TODO might need a builder-pattern for proper execution
+            this.add(block);
 
         //check if block to be added is of CitizenBlock-type and if chainsize is greater than 0
         } else if (CitizenBlock.class.isAssignableFrom(block.getClass()) && this.size() > 1) {
             System.out.println("Block is of CitizenBlock-type and chain has at least two block");
+            //TODO encrypt hash of proposed CitizenBlock with public-key of validator, confirming the authority of the validator
+            //TODO might need a builder-pattern for proper execution
+            this.add(block);
 
         //if none match, block is not recognized and a fatal error has occurred
         } else {
             throw new RuntimeException("ERROR: Block supplied does not match any types known!");
-        }
-
-        //check if supplied validator block exists on chain, needs RSA-challenge as well
-        if (this.contains(validator)) {
-            System.out.println("Is validator");
-            this.add(block);
-        } else {
-            throw new RuntimeException("Validator is not on chain, cannot guarantee authority");
         }
         return true;
     }
@@ -38,7 +41,6 @@ public class Blockchain extends ArrayList<Block> implements Chain {
     //might not be necessary, however signature doesn't match when addValidatedBlock is considered
     @Override
     public boolean add(Block block) {
-
         try {
             super.add(block);
             return true;

@@ -15,14 +15,14 @@ public class Datchain {
         CitizenBlock citizen03 = new CitizenBlock("Citizen Name3", "CitizenPublicKey", citizen02.getHash(), validator03.getIdentity(), validator03.getIdentityPublicKey());
 
         Blockchain chain02 = new Blockchain();
-        chain02.add(genesis01);
-        chain02.add(validator01);
-        chain02.add(validator02);
-        chain02.add(validator03);
+        chain02.addValidatedBlock(genesis01, validator01);
+        chain02.addValidatedBlock(validator01, validator01);
+        chain02.addValidatedBlock(validator02, validator01);
+        chain02.addValidatedBlock(validator03, validator01);
 
-        chain02.add(citizen01);
-        chain02.add(citizen02);
-        chain02.add(citizen03);
+        chain02.addValidatedBlock(citizen01, validator01);
+        chain02.addValidatedBlock(citizen02, validator01);
+        chain02.addValidatedBlock(citizen03, validator01);
 
         System.out.println("chain02 validated: " + chain02.validateChain());
 
