@@ -106,22 +106,15 @@ public class Blockchain extends ArrayList<Block> implements Chain {
 
     //ArrayList doesn't implement a .last() method, thus we implement one ourselves
     public Block getHead() {
-        Block head;
- /*       if (this.size() > 0) {
-            head = this.get(this.size() - 1);
-        } else {
-            throw new RuntimeException("No blocks added, can't get head");
-        }
-        */
 
+        Block head;
         try {
+            //throw exception if no blocks are added, probably not the prettiest handling
+            if (this.size() == 0) throw new RuntimeException("ERROR: No blocks added, cannot get head");
             head = this.get(this.size() - 1);
         } catch (IndexOutOfBoundsException e) {
             throw new IndexOutOfBoundsException("ERROR: No blocks added, cannot get head" + e.getMessage());
-        } catch (RuntimeException e) {
-            throw new RuntimeException("Fuck!");
         }
-
         return head;
     }
 
