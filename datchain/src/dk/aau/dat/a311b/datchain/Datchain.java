@@ -1,5 +1,7 @@
 package dk.aau.dat.a311b.datchain;
 
+import java.util.ArrayList;
+
 public class Datchain {
 
     public static void main(String[] args) {
@@ -23,11 +25,8 @@ public class Datchain {
 
         System.out.println("chain02 validated: " + chain02.validateChain());
 
-        //testing out fuzzy search matching
-        Block searchResultBlock01 = chain02.searchSingleIdentity("citiz nahym");
-        Block searchResultBlock02 = chain02.searchSinglePublicKey("gænæsæs Påblæk kay");
-        System.out.println(searchResultBlock01.getIdentity());
-        System.out.println(searchResultBlock02.getIdentity() + " " + searchResultBlock02.getIdentityPublicKey());
-
+        //create Search object and run identity search for printing
+        ArrayList<Block> temp = new Search().FuzzySearchIdentity("citizz", chain02, 2);
+        temp.forEach( block -> System.out.println(block.getIdentity()) );
     }
 }
