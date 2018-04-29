@@ -1,28 +1,27 @@
 package dk.aau.dat.a311b.datchain;
 
-import java.io.*;
-import java.security.KeyPair;
-import java.security.KeyPairGenerator;
-import java.security.PrivateKey;
-import java.security.PublicKey;
-import javax.crypto.Cipher;
+import me.xdrop.fuzzywuzzy.model.ExtractedResult;
 
-import static dk.aau.dat.a311b.datchain.RSAgen.Constants.ALGORITHM;
-import static dk.aau.dat.a311b.datchain.RSAgen.Constants.PRIVATE_KEY_FILE;
-import static dk.aau.dat.a311b.datchain.RSAgen.Constants.PUBLIC_KEY_FILE;
+import java.io.*;
+import java.security.*;
+import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
+
+import static dk.aau.dat.a311b.datchain.RSAgen.Constants.*;
 
 public class RSAgen {
-    public class Constants {
-        public static final String ALGORITHM = "RSA";
-        public static final String PRIVATE_KEY_FILE = "C:/datchain/keys/private.key";
-        public static final String PUBLIC_KEY_FILE = "C:/datchain/keys/public.key";
 
+    class Constants {
+        static final String ALGORITHM = "RSA";
+        static final int KEYBITLENGTH = 4096;
+        static final String PRIVATE_KEY_FILE = "C:/datchain/keys/private.key";
+        static final String PUBLIC_KEY_FILE = "C:/datchain/keys/public.key";
     }
 
-    private static void Keygen() {
+    static void Keygen() {
         try {
             final KeyPairGenerator keyGen = KeyPairGenerator.getInstance(ALGORITHM);
-            keyGen.initialize(4096);
+            keyGen.initialize(KEYBITLENGTH);
             final KeyPair key = keyGen.generateKeyPair();
 
             File privatekeyFile = new File(PRIVATE_KEY_FILE);
@@ -31,11 +30,13 @@ public class RSAgen {
             if (privatekeyFile.getParentFile() != null) {
                 privatekeyFile.getParentFile().mkdirs();
             }
+            //how is this meant to work?
             privatekeyFile.createNewFile();
 
             if (publickeyFile.getParentFile() != null) {
                 publickeyFile.getParentFile().mkdirs();
             }
+            //how is this meant to work?
             publickeyFile.createNewFile();
 
             ObjectOutputStream privateKeyOS = new ObjectOutputStream(new FileOutputStream(privatekeyFile));
@@ -50,23 +51,29 @@ public class RSAgen {
         }
     }
     public static boolean keysPresent() {
+        //method is misnamed, creates keys and asks if they're present
         File privatekey = new File(PRIVATE_KEY_FILE);
         File publickey = new File(PUBLIC_KEY_FILE);
-
-        if(privatekey.exists() && publickey.exists()) {
-            return true;
-        }
-        return false;
+        return privatekey.exists() && publickey.exists();
     }
 
-    public static byte[] encrypt(String text, PublicKey key) {
+    public static byte[] encrypt(String cleartext, PublicKey key) {
         byte[] cipherText = null;
         try {
             final Cipher cipher = Cipher.getInstance(ALGORITHM);
             cipher.init(Cipher.ENCRYPT_MODE, key);
-            cipherText = cipher.doFinal(text.getBytes("Unicode"));
+            cipherText = cipher.doFinal(cleartext.getBytes("Unicode"));
+        } catch (UnsupportedEncodingException e) {
+            System.out.println("ERROR: System does not have support for unicode encoding! " + e.getMessage());
+        } catch (NoSuchAlgorithmException e) {
+            System.out.println("ERROR: System does not have support for RSA-cryptography! " + e.getMessage());
+        } catch (InvalidKeyException e) {
+            System.out.println("ERROR: Invalid key supplied! " + e.getMessage());
+        } catch (IllegalBlockSizeException e) {
+            System.out.println("ERROR: Invalid block size of bytes received! " + e.getMessage());
+        //catch remaining padding exceptions from Cipher.getInstance
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("ERROR: Padding error in initializing instance! " + e.getMessage());
         }
         return cipherText;
     }
@@ -77,10 +84,12 @@ public class RSAgen {
             final Cipher cipher = Cipher.getInstance(ALGORITHM);
             cipher.init(Cipher.DECRYPT_MODE, key);
             decryptedtext = cipher.doFinal(text);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
+        //poor null-handling, avoid
+        assert decryptedtext != null;
+
         return new String(decryptedtext);
     }
 }
