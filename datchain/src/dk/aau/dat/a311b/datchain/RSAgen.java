@@ -1,4 +1,4 @@
-package main;
+package dk.aau.dat.a311b.datchain;
 
 import java.io.*;
 import java.security.KeyPair;
@@ -7,9 +7,9 @@ import java.security.PrivateKey;
 import java.security.PublicKey;
 import javax.crypto.Cipher;
 
-import static main.RSAgen.Constants.ALGORITHM;
-import static main.RSAgen.Constants.PRIVATE_KEY_FILE;
-import static main.RSAgen.Constants.PUBLIC_KEY_FILE;
+import static dk.aau.dat.a311b.datchain.RSAgen.Constants.ALGORITHM;
+import static dk.aau.dat.a311b.datchain.RSAgen.Constants.PRIVATE_KEY_FILE;
+import static dk.aau.dat.a311b.datchain.RSAgen.Constants.PUBLIC_KEY_FILE;
 
 public class RSAgen {
     public class Constants {
