@@ -1,5 +1,7 @@
 package dk.aau.dat.a311b.datchain;
 
+import java.security.PublicKey;
+
 public class Datchain {
 
     public static void main(String[] args) {
@@ -32,6 +34,8 @@ public class Datchain {
         System.out.println(searchResultBlock01.getIdentity());
         System.out.println(searchResultBlock02.getIdentity() + " " + searchResultBlock02.getIdentityPublicKey());
 
-
+        System.out.println("RSA-keys present: " + RSAgen.keysPresent());
+        //Byte[] ciphertext = RSAgen.encrypt("Random String", pubkey);
+        //System.out.println("Decrypted text: " + RSAgen.decrypt(ciphertext, privkey));
     }
 }
