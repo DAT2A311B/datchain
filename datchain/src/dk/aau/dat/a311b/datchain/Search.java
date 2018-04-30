@@ -15,7 +15,10 @@ public class Search {
 
     public ArrayList<Block> FuzzySearchIdentity(String term, Blockchain chain, int cutoff) {
 
-        //deep copy block to arraySource
+        //avoid OutOfBounds exception
+        if (cutoff > chain.size()) cutoff = chain.size();
+
+        //deep copy block.getIdentity to arraySource
         for (int i = 0; i < chain.size(); i++) {
             this.arraySource.add(chain.getBlock(i).getIdentity());
         }
@@ -30,6 +33,9 @@ public class Search {
     }
 
     public ArrayList<Block> FuzzySearchIdentityPublicKey(String term, Blockchain chain, int cutoff) {
+
+        //avoid OutOfBounds exception
+        if (cutoff > chain.size()) cutoff = chain.size();
 
         //deep copy block to arraySource
         for (int i = 0; i < chain.size(); i++) {
