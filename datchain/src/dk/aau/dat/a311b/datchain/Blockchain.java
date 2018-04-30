@@ -4,7 +4,7 @@ package dk.aau.dat.a311b.datchain;
 import me.xdrop.fuzzywuzzy.FuzzySearch;
 import java.util.ArrayList;
 
-public class Blockchain extends ArrayList<Block> implements Chain {
+public class Blockchain extends ArrayList<Block> {
 
     public boolean addValidatedBlock(Block block, Block validator) {
 
@@ -76,52 +76,17 @@ public class Blockchain extends ArrayList<Block> implements Chain {
         return true;
     }
 
-    //TODO should be expanded to create another arraylist of blocks,
-    //TODO should also utilise the ratio supplied by fuzzysearch to suggest a block, the user might be searching for
-    public Block searchSingleIdentity(String term) {
-
-        //create string-array for holding identities for searching
-        ArrayList<String> arrayIdentity = new ArrayList<>();
-
-        //iterate through chain and put identities in arrayIdentity, such that indices match between the two arrays
-        for (int i = 0; i < this.size(); i++) {
-            arrayIdentity.add(this.getBlock(i).getIdentity());
-        }
-        //return for this chain-object, the block that FuzzySearch ranks with the highest ratio depending on supplied term
-        return this.getBlock( FuzzySearch.extractOne(term, arrayIdentity).getIndex() );
-    }
-
-    public Block searchSinglePublicKey(String term) {
-
-        //create string-array for holding public keys for searching
-        ArrayList<String> arrayPublicKeys = new ArrayList<>();
-
-        //iterate through chain and put public keys in arrayPublicKeys, such that indices match between the two arrays
-        for (int i = 0; i < this.size(); i++) {
-            arrayPublicKeys.add(this.getBlock(i).getIdentity());
-        }
-        //return for this chain-object, the block that FuzzySearch ranks with the highest ratio depending on supplied term
-        return this.getBlock( FuzzySearch.extractOne(term, arrayPublicKeys).getIndex() );
-    }
-
     //ArrayList doesn't implement a .last() method, thus we implement one ourselves
     public Block getHead() {
-        Block head;
- /*       if (this.size() > 0) {
-            head = this.get(this.size() - 1);
-        } else {
-            throw new RuntimeException("No blocks added, can't get head");
-        }
-        */
 
+        Block head;
         try {
+            //throw exception if no blocks are added, probably not the prettiest handling
+            if (this.size() == 0) throw new RuntimeException("ERROR: No blocks added, cannot get head");
             head = this.get(this.size() - 1);
         } catch (IndexOutOfBoundsException e) {
             throw new IndexOutOfBoundsException("ERROR: No blocks added, cannot get head" + e.getMessage());
-        } catch (RuntimeException e) {
-            throw new RuntimeException("Fuck!");
         }
-
         return head;
     }
 
