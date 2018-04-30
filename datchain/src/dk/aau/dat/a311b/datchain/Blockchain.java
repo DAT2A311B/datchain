@@ -4,7 +4,7 @@ package dk.aau.dat.a311b.datchain;
 import me.xdrop.fuzzywuzzy.FuzzySearch;
 import java.util.ArrayList;
 
-public class Blockchain extends ArrayList<Block> implements Chain {
+public class Blockchain extends ArrayList<Block> {
 
     public boolean addValidatedBlock(Block block, Block validator) {
 
