@@ -1,4 +1,4 @@
-package main.gui;
+package dk.aau.dat.a311b.datchain.gui;
 
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
