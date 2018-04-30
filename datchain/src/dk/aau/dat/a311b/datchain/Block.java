@@ -9,6 +9,7 @@ import static java.time.Instant.now;
 
 abstract class Block {
 
+    //common fields for all blocks
     private final String identity;
     private final String identityPublicKey;
     private final String prevHash;
