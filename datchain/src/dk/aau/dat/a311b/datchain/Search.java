@@ -26,8 +26,8 @@ public class Search {
         searchResults = FuzzySearch.extractTop(term, arraySource, cutoff);
 
         //for cutoff, get blocks from chain, from searchResults and add to primitive arraylist
-        for (ExtractedResult searchResult : searchResults) {
-            blockResults.add(chain.getBlock(searchResult.getIndex()));
+        for (ExtractedResult result : searchResults) {
+            blockResults.add(chain.getBlock(result.getIndex()));
         }
         return blockResults;
     }
